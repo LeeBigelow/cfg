@@ -1,0 +1,70 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+BASHDOTDIR=$HOME/.config/bash
+HISTFILE=$BASHDOTDIR/history
+HISTCONTROL=ignoreboth:erasedups
+HISTIGNORE=exit:ls
+HISTFILESIZE=1000
+HISTSIZE=1000
+
+# Disable Ctrl-S and Ctrl-Q flow control
+stty -ixon
+stty stop undef
+
+shopt -s checkwinsize
+shopt -s autocd cdspell dirspell direxpand
+shopt -s expand_aliases checkhash extglob extquote
+shopt -s globskipdots globstar no_empty_cmd_completion progcomp_alias
+shopt -s cmdhist lithist
+
+# Load up other custom aliases
+if [[ -s $BASHDOTDIR/aliases ]]; then
+	. $BASHDOTDIR/aliases
+fi
+
+GIT_PS1_SHOWDIRTYSTATE=1
+source /usr/share/git/completion/git-prompt.sh
+__my_chpwd() {
+	if [[ "$PREVPWD" != "$PWD" ]]; then
+		ls >&2
+	fi	
+	export PREVPWD="$PWD"
+}
+__my_prompt() {
+	GIT_INFO=$(__git_ps1)
+	WHO="$USER@$HOSTNAME"
+	(( DMAX = $COLUMNS - ${#WHO} - ${#GIT_INFO} - 4 ))
+	DIR="${PWD/$HOME/\~}"
+	if (( "${#DIR}" > $DMAX )); then
+		DIR="…${DIR:$(( ${#DIR} - $DMAX ))}"
+	fi
+	case "$TERM" in
+		linux|*color|foot*)
+			YELLOW="\[$(tput setaf 3)\]"
+			BLUE="\[$(tput setaf 4)\]"
+			RESET="\[$(tput sgr0)\]"
+			PS1="${YELLOW}[${WHO}:${BLUE}${DIR}${YELLOW}]${RESET}${GIT_INFO}"$'\n'
+			PS1+="${YELLOW}\$${RESET} "
+			unset YELLOW BLUE RESET
+			;;
+		*)
+			PS1="[${WHO}:${DIR}]${GIT_INFO}"$'\n'"\$ "
+			;;
+	esac
+	printf "\e]0;%s\a" "$TERM: $WHO:$DIR $GITINFO"
+	unset WHO DIR GIT_INFO
+}
+PROMPT_COMMAND='__my_prompt'
+
+# indicate subshell
+[[ -n "$VIFM" ]] && PS1="[VIFM]$PS1"
+
+# Setup FZF if in a capable terminal
+export FZF_COMPLETION_DIR_OPTS='--walker dir,hidden,follow'
+export FZF_COMPLETION_PATH_OPTS='--walker file,dir,hidden,follow'
+eval "$(fzf --bash)"
+
+# zoxide
+eval "$(zoxide init bash)"
+

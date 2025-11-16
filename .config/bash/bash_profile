@@ -1,0 +1,18 @@
+# We are a bash login shell
+# Source non-bash specific login profile
+[[ -s "$HOME/.profile" ]] && source "$HOME/.profile"
+
+# Source bashrc if interactive login
+[[ $- == *i* && -s "$HOME/.bashrc" ]] && source "$HOME/.bashrc"
+
+
+[[ -s "$HOME/.config/dircolors" ]] && source "$HOME/.config/dircolors"
+# make other-writable files readable (black on yellow)
+# export LS_COLORS+="ow=30;42"
+
+# Start Desktop
+# if [[ -z "$WAYLAND_DISPLAY" && -z "$DISPLAY" \
+# 		&& -n "$XDG_VTNR" && "$XDG_VTNR" -eq 1 ]]; then
+# 	export XDG_CURRENT_DESKTOP="sway:wlroots"
+# 	exec sway >/dev/null 2>&1
+# fi

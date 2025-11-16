@@ -1,0 +1,31 @@
+alias ls="ls -vhF --color=auto"
+alias ll="ls -l"
+alias la="ls -A"
+alias lla="ls -lA"
+
+alias grep="grep --color=auto"
+
+alias findbroken="find ./ -type l ! -exec test -e {} \; -print"
+alias lc="fc -l -n -1 -1 | sed 's/^\s\+//' | tee /dev/stderr | wl-copy"
+alias hoff="set +o history"
+alias hon="set -o history"
+alias fzfp="fzf --bind 'alt-,:change-preview-window(right|up)' --preview-window='up' --preview='fzf-preview.sh {}'"
+alias on="wlr-randr --output eDP-1 --toggle"
+alias bm="bashmount"
+alias qmv="qmv -f do"
+alias ffprobe="ffprobe -hide_banner"
+alias ffmpeg="ffmpeg -hide_banner"
+alias tmuxtv="cd $HOME/Downloads; tmux new-session -A -s TV"
+
+mpvb() { 
+	mpv --terminal=no "$@" & 
+}
+
+mdv() { 
+	md2html --github "$1" | w3m -T text/html
+}
+
+vimhelp() { 
+	vim -c "help $1" -c on -c 'au! VimEnter *'
+}
+
