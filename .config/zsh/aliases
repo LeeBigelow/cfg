@@ -1,0 +1,50 @@
+autoload -Uz run-help
+(( ${+aliases[run-help]} )) && unalias run-help
+alias help=run-help
+autoload -Uz run-help-git run-help-ip run-help-sudo
+
+alias d="dirs -v"
+alias h="fc -l"
+
+alias config='/usr/bin/git --git-dir=$HOME/.cfg --work-tree=$HOME'
+alias findbroken="find ./ -type l ! -exec test -e {} \; -print"
+alias lc="fc -l -n -1 -1 | sed 's/^\s\+//' | tee /dev/stderr | wl-copy"
+alias hoff="fc -p"
+alias hon="fc -P"
+alias fzfp="fzf --bind 'alt-,:change-preview-window(right|up)' --preview-window='up' --preview='fzf-preview.sh {}'"
+alias on="wlr-randr --output eDP-1 --toggle"
+alias bm="bashmount"
+alias qmv="qmv -f do"
+alias ffprobe="ffprobe -hide_banner"
+alias ffmpeg="ffmpeg -hide_banner"
+alias tmuxtv="cd $HOME/Downloads; tmux new-session -A -s TV"
+alias vi="vim"
+
+
+# some short helpful functions
+mpvb() { mpv --terminal=no "$@" >/dev/null 2>&1 & }
+mdv() { md2html --github "$1" | w3m -T text/html }
+vimhelp() { vim -c "help $1" -c on -c "au! VimEnter *" }
+
+# add listing directory to grml's chpwd
+
+chpwd () {
+	(( ZSH_SUBSHELL )) && return
+	[[ -z $DIRSTACKSIZE ]] && return
+	(( $DIRSTACKSIZE <= 0 )) && return
+	[[ -z $DIRSTACKFILE ]] && return
+	grml_dirstack_filter $PWD && return
+	GRML_PERSISTENT_DIRSTACK=($PWD "${(@)GRML_PERSISTENT_DIRSTACK[1,$DIRSTACKSIZE]}") 
+	builtin print -l ${GRML_PERSISTENT_DIRSTACK} >| ${DIRSTACKFILE}
+	ls
+}
+
+# yazi, cd on exit
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+

@@ -1,0 +1,2 @@
+export ZDOTDIR=$HOME/.config/zsh
+[[ ! -d $ZDOTDIR ]] && mkdir -p $ZDOTDIR 

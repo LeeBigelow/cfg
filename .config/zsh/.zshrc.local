@@ -1,0 +1,35 @@
+# turn off ctrl-s ctrl-q flow control
+stty -ixon
+setopt NOFLOWCONTROL
+setopt PUSHD_TO_HOME PUSHD_IGNORE_DUPS
+setopt HIST_EXPIRE_DUPS_FIRST HIST_IGNORE_ALL_DUPS
+setopt HASH_LIST_ALL NOTIFY
+
+# Custom colors for file types
+[[ -e "$HOME/.config/dircolors" ]] && source "$HOME/.config/dircolors"
+
+# my aliases and keys
+[[ -f "$ZDOTDIR/aliases" ]] && source "$ZDOTDIR/aliases"
+[[ -f "$ZDOTDIR/keys" ]] && source "$ZDOTDIR/keys"
+
+# two line prompt
+zstyle ':prompt:grml:*:items:percent' pre $'\n'
+
+export FZF_COMPLETION_DIR_OPTS='--walker dir,hidden,follow'
+export FZF_COMPLETION_PATH_OPTS='--walker file,dir,hidden,follow'
+eval "$(fzf --zsh)"
+
+eval "$(zoxide init zsh)"
+
+autoload -Uz zcalc
+
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
+if [[ -z "$WAYLAND_DISPLAY" && -z "$DISPLAY" ]]; then
+	if [[ -n "$XDG_VTNR" && "$XDG_VTNR" -eq 1 ]]; then
+		# exec niri-session
+		export XDG_CURRENT_DESKTOP="sway:wlroots"
+		exec sway >/dev/null 2>&1
+	fi
+	export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=black,bg=black,bold"
+fi
