@@ -1,0 +1,27 @@
+# env variables, not shell specific
+export PATH="$HOME/.local/bin:$PATH"
+export SUDO_ASKPASS="/usr/local/bin/askpass.sh"
+export VISUAL="vim"
+export EDITOR="vim"
+export PAGER="less"
+# less: quit-if-one-screen, RAW-CONTROL-CHARS, LONG-PROMPT,
+LESS="--quit-if-one-screen --RAW-CONTROL-CHAR --LONG-PROMPT --ignore-case"
+LESS+=" --mouse --tabs=4"
+export LESS
+export LESSOPEN="|lesspipe.sh %s"
+export SYSTEMD_LESS="FRXMi"
+# color man pages with blue and magenta
+export MANPAGER="less -R --use-color -Dd+b -Du+m"
+export MANROFFOPT="-P -c"
+export BROWSER="firefox"
+
+# sort case-sensitive
+LC_COLLATE="C"
+
+# using systemd gcr-ssh-agent
+if [ -S "$XDG_RUNTIME_DIR/gcr/ssh" ]; then
+  export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
+fi
+
+# some apps need to be told to use waylan
+export GDK_BACKEND="wayland"

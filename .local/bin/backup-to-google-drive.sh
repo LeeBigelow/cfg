@@ -10,7 +10,7 @@ grep "^url" Code/Other/*/PKGBUILD >> "$otherfile"
 sort -o "$otherfile" "$otherfile"
 
 # package list
-pacman -Qqe > ~/Documents/package-list.txt
+pacman -Qqe > ~/.config/package-list.txt
 
 # back up .conf, if small enough
 sizelimit=2000000

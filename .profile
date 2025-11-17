@@ -1,0 +1,1 @@
+/home/yargo/.config/bash/profile
