@@ -1,0 +1,204 @@
+[
+	{
+		"position": "top",
+		"height": 24,
+		"reload_style_on_change": true,
+		"layer": "top",
+
+		"modules-left": [
+			"custom/appmenu",
+			"niri/workspaces"
+		],
+
+		"modules-center": [
+			"niri/window"
+		],
+
+		"modules-right": [
+			"tray",
+			"pulseaudio",
+			"pulseaudio#source",
+			"bluetooth",
+			"network",
+			"battery",
+			"clock",
+			"custom/power"
+		],
+
+		"custom/appmenu": {
+			"interval": "once",
+			"format": "",
+			"tooltip": false,
+			"on-click": "fuzzel -a top-left"
+		},
+
+		"niri/workspaces": {
+			"format": "{icon}",
+			"format-icons": {
+				"default": "●",
+				"active": "●",
+				"focused": "⬤",
+				"urgent": "⭐",
+				"empty": "○"
+			}
+		},
+
+		"niri/window": {
+			"format": "{app_id}: {title}",
+			"icon": true,
+			"rewrite": {
+				": ": ""
+			},
+			"all-outputs": true,
+			"max-length": 200
+		},
+
+		"tray": {
+			"show-pasive-items": true,
+			"smooth-scrolling-threshold": 1,
+			"spacing": 8
+		},
+
+		"pulseaudio": {
+			"format": "{icon}",
+			"format-muted": "󰖁(M)",
+			"format-bluetooth": "󰗾BT",
+			"format-bluetooth-muted": "󰗿BT(M)",
+			"format-icons": {
+				"default": [
+					"󰕿",
+					"󰖀",
+					"󰕾"
+				],
+				"headphone": "",
+				"speaker": [
+					"󰕿",
+					"󰖀",
+					"󰕾"
+				],
+				"hdmi": "󰡁",
+				"headset": "󱇰"
+			},
+			"on-click": "pavucontrol",
+			"on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+			"reverse-scrolling": true, // using natural scrolling
+			"on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 1%+",
+			"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-",
+			"tooltip": true,
+			"tooltip-format": "Volume: {volume}%	·  {desc}"
+		},
+
+		"pulseaudio#source": {
+			"format": "{format_source}",
+			"format-source": " {volume}",
+			"format-source-muted": "",
+			"on-click": "pavucontrol",
+			"reverse-scrolling": true, // using natural scrolling
+			"on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+			"on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 1%+",
+			"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%-",
+			"tooltip": false
+		},
+
+		"bluetooth": {
+			"format": "",
+			"format-connected": "",
+			"format-disabled": "󰂲",
+			"format-icons": [
+				"󰤾",
+				"󰤿",
+				"󰥀",
+				"󰥁",
+				"󰥂",
+				"󰥃",
+				"󰥄",
+				"󰥅",
+				"󰥆",
+				"󰥈"
+			],
+			"format-off": "󰂲",
+			"format-on": "",
+			"tooltip": "true",
+			"tooltip-format": "{controller_alias}\t{controller_address}  {num_connections} connected",
+			"tooltip-format-disabled": "",
+			"tooltip-format-off": "",
+			"tooltip-format-on": "",
+			"tooltip-format-connected": "{controller_alias}\t{controller_address}  {num_connections} connected	{device_enumerate}",
+			"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+			"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+			"on-click": "foot -d none -T 'bluetui' -a bluetui -- bluetui",
+			"on-click-right": "rfkill toggle bluetooth"
+		},
+
+		"network": {
+			"format-wifi": "󰖩",
+			"format-disconnected": "󰤫",
+			"format-disabled": "󰤮",
+			"format-ethernet": "󰈀",
+			// "interval": 5,
+			"tooltip-format": "{ifname} via {gwaddr} 󰈀",
+			"tooltip-format-wifi": "{essid} · {signalStrength}% · {ipaddr}",
+			"tooltip-format-disconnected": "Disconnected",
+			"on-click": "foot -d none -T 'impala' -a impala -- impala",
+			"on-click-right": "rfkill toggle wifi"
+		},
+
+		"battery": {
+			"states": {
+				"warning": 30,
+				"critical": 15
+			},
+			"bat": "BAT0",
+			"adapter": "ADP0",
+			"format": "{icon}",
+			"format-charging": "󰂄",
+			"format-full": "󰂄",
+			"format-icons": [
+				"󰂎",
+				"󰁺",
+				"󰁻",
+				"󰁼",
+				"󰁽",
+				"󰁾",
+				"󰁿",
+				"󰂀",
+				"󰂁",
+				"󰂂",
+				"󰁹"
+			],
+			"tooltip": true,
+			"tooltip-format": "{capacity}%	·  {timeTo}"
+		},
+
+		"clock": {
+			"format": "{:%I:%M %p}",
+			"format-alt": "{:%F %R}",
+			"tooltip-format": "<tt>{calendar}</tt>",
+			"smooth-scrolling-threshold": 3.0,
+			"calendar": {
+				"mode": "month",
+				"mode-mon-col": 3,
+				"weeks-pos": "right",
+				"format": {
+					"months": "<span color='#ffead3'><b>{}</b></span>",
+					"days": "<span color='#ecc6d9'><b>{}</b></span>",
+					"weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+					"weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+					"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+				}
+			},
+			"actions": {
+				"on-click-right": "mode",
+				"on-scroll-up": "shift_down",
+				"on-scroll-down": "shift_up"
+			}
+		},
+
+		"custom/power": {
+			"interval": "once",
+			"format": "",
+			"tooltip": false,
+			"on-click": "power-menu.sh -tr"
+		}
+	}
+]

@@ -1,0 +1,16 @@
+[Unit]
+Description=Disable touchpad service
+After=graphical.target
+
+[Service]
+User=root
+Group=root
+Type=simple
+ExecStart=/bin/bash -c "/usr/local/bin/touchscreen-disable.sh"
+ExecStop=/bin/bash -c "/usr/local/bin/touchscreen-disable.sh -e"
+RemainAfterExit=yes
+Restart=no
+
+[Install]
+WantedBy=graphical.target
+

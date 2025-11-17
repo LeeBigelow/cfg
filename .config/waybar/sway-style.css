@@ -1,0 +1,166 @@
+/*Colors*/
+/* @define-color bg #353535; */
+@define-color bg     #353535;
+@define-color dark   #282828;
+@define-color hi     #5d5d5d;
+@define-color fg     #ffffff;
+@define-color red_d  #402120;
+@define-color red    #ea6962;
+@define-color orange #e78a4e;
+@define-color blue   #7daea3;
+
+* {
+	all: unset;
+	font-family: "Sans Serif", "Symbols Nerd Font";
+	font-size: 14px;
+	background-color: @bg;
+	color: @fg;
+}
+
+tooltip {
+	background: @dark;
+}
+tooltip label {
+	background: @dark;
+	color: @fg;
+	font-size: 16px;
+	padding: 0px 6px;
+}
+
+#custom-appmenu,
+#workspaces button,
+#scratchpad,
+#window label,
+#mode,
+#tray,
+#pulseaudio,
+#bluetooth,
+#network,
+#battery,
+#clock,
+#custom-power { 
+	background: @bg;
+	color: @fg;
+	padding: 0 4px;
+}
+#custom-appmenu:hover,
+#workspaces button:hover,
+#workspaces button:hover label,
+#tray:hover,
+#tray:hover *,
+#pulseaudio:hover,
+#bluetooth:hover,
+#network:hover,
+#battery:hover,
+#clock:hover,
+#custom-power:hover { 
+	background: @hi;
+	color: @fg;
+}
+
+#custom-appmenu,
+#custom-power {
+	padding: 0 10px;
+}
+
+#workspaces button {
+	opacity: 0.8;
+	padding: 0 6px;
+}
+#workspaces button.focused,
+#workspaces button.focused label {
+	opacity: 1;
+	color: @bg;
+	background: @fg;
+}
+#workspaces button.urgent {
+	background-color: @red;	color: @dark;
+}
+#workspaces button.visible.urgent{
+	background-color: @red;}
+#workspaces button.urgent.focused {
+	background: @blue;
+}
+
+#scratchpad {
+	background: @red_d;
+}
+
+#mode {
+	background-color: @orange;
+	color: @bg;
+}
+
+#tray menu {
+	background-color: @bg;
+	border: 1px solid @dark;
+}
+#tray menuitem * {
+	font-size: 16px;
+	padding: 2px; 
+}
+#tray menuitem:hover * {
+	background-color: @hi;
+}
+#tray > .needs-attention {
+	background-color: @red;
+}
+
+#pulseaudio.muted {
+	opacity: 0.5;
+}
+#pulseaudio.bluetooth {
+	background-color: @blue;
+	color: @bg;
+}
+#pulseaudio.bluetooth:hover {
+background-color: @hi;
+	color: @fg;
+}
+#pulseaudio.source { 
+	background-color: @red;	color: @bg;
+}
+#pulseaudio.source:hover { 
+	background-color: @orange;
+	color: @bg;
+}
+#pulseaudio.source.source-muted {
+	background-color: @bg;
+	color: @fg;
+	opacity: 0.5;
+}
+#pulseaudio.source.source-muted:hover {
+	background-color: @hi;
+	color: @fg;
+	opacity: 0.5;
+}
+
+#network.disconnected {
+	background-color: @red;
+	color: @bg;
+}
+#network.disabled {
+	opacity: 0.5;
+}
+
+#bluetooth.connected {
+	color: @blue;
+}
+#bluetooth.disabled {
+	opacity: 0.5;
+}
+
+#battery {
+	margin: 0 5px 0 0;
+}
+#battery.plugged {
+	opacity: 0.5;
+}
+#battery.warning:not(.charging) {
+	background-color: @orange;
+	color: @bg;
+}
+#battery.critical:not(.charging) {
+	background-color: @red;
+	color: @bg;
+}

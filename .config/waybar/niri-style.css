@@ -1,0 +1,135 @@
+/*Colors*/
+@define-color bg_dim #353535;
+@define-color bg0    #282828;
+@define-color bg1    #32302f;
+@define-color bg3    #5d5d5d;
+@define-color bg_diff_red   #402120;
+@define-color bg_visual_red #4c3432;
+@define-color bg_diff_blue  #0e363e;
+@define-color fg0    #ffffff;
+@define-color red    #ea6962;
+@define-color orange #e78a4e;
+@define-color green  #a9b665;
+@define-color blue   #7daea3;
+@define-color gray2  #a89984;
+
+* {
+	all: unset;
+	font-family: "Sans Serif", "Symbols Nerd Font";
+	font-size: 14px;
+}
+
+window#waybar {
+	background-color: @bg_dim;
+	color: @fg0;
+}
+
+tooltip {
+	background: @bg0;
+}
+
+tooltip label {
+	color: @fg0;
+	background: @bg0;
+	font-size: 16px;
+	padding: 0px 6px;
+}
+
+#custom-appmenu,
+#workspaces,
+#window label,
+#tray,
+#pulseaudio,
+#network,
+#bluetooth,
+#battery,
+#clock,  
+#custom-power {
+	color: @fg0;
+	background: @bg_dim;
+	padding: 0 4px;
+}
+
+#custom-appmenu {
+	padding: 0 10px;
+}
+
+#workspaces button {
+	margin: 0 4px;
+}
+
+#tray menu {
+	background-color: @bg0;
+	padding: 8px;
+	border: 1px solid @bg3;
+}
+#tray menuitem * {
+	font-size: 16px;
+	padding: 2px; 
+}
+#tray menuitem:hover {
+	background-color: @bg3;
+}
+#tray menuitem.inactive {
+	color: @gray2;
+}
+#tray > .needs-attention {
+	background-color: @red;
+}
+
+#pulseaudio.muted {
+	opacity: 0.5;
+}
+#pulseaudio.bluetooth {
+	background-color: @blue;
+	color: @bg_dim;
+}
+/* Mic red when active, dull when off */
+#pulseaudio.source { 
+	background-color: @red;
+	color: @bg_dim;
+}
+#pulseaudio.source.source-muted {
+	background-color: @bg_dim;
+	color: @fg0;
+	opacity: 0.5;
+}
+
+#network.disconnected {
+	background-color: @red;
+	color: @bg_dim;
+}
+#network.disabled {
+	opacity: 0.5;
+}
+
+#bluetooth.connected {
+	color: @blue;
+}
+#bluetooth.disabled {
+	opacity: 0.5;
+}
+
+#battery {
+	margin: 0 5px 0 0;
+}
+#battery.plugged {
+	opacity: 0.5;
+}
+#battery.warning:not(.charging) {
+	background-color: @orange;
+	color: @bg_dim;
+}
+#battery.critical:not(.charging) {
+	background-color: @red;
+	color: @bg_dim;
+}
+
+#clock {
+	font-family: "Monospace"; 
+}
+
+#custom-power {
+	padding: 0 10px;
+}
+
