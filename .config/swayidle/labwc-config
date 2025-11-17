@@ -1,0 +1,4 @@
+timeout 300 'swaylock'
+timeout 305 'wlr-randr --output HDMI-A-1 --off; wlr-randr --output eDP-1 --off' resume 'wlr-randr --output eDP-1 --on; wlr-randr --output HDMI-A-1 --on; pkill -SIGHUP kanshi'
+before-sleep 'swaylock'
+

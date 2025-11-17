@@ -1,0 +1,6 @@
+ignore-empty-password
+daemonize
+image=$HOME/.wallpaper
+scaling=fit
+color=000000
+show-failed-attempts

@@ -1,0 +1,34 @@
+" vim: filetype=vifm :
+
+" Author: Stéphane (a.k.a. istib)
+
+highlight Win             cterm=none ctermfg=default    ctermbg=none
+
+highlight TopLine         cterm=none ctermfg=white       ctermbg=none
+highlight TopLineSel      cterm=none ctermfg=white       ctermbg=none
+highlight StatusLine      cterm=none ctermfg=white       ctermbg=none
+highlight Border          cterm=none ctermfg=white       ctermbg=none
+
+highlight Selected        cterm=none ctermfg=black    ctermbg=yellow
+highlight CurrLine        cterm=none ctermfg=black    ctermbg=lightblack
+
+highlight WildMenu        cterm=reverse ctermfg=white ctermbg=black
+highlight CmdLine         cterm=bold ctermfg=white ctermbg=black
+highlight ErrorMsg        cterm=none ctermfg=red ctermbg=black
+
+" ## From vifm-convert-dircolors
+
+" generic file types
+highlight BrokenLink cterm=bold ctermfg=red ctermbg=black
+highlight Device cterm=bold ctermfg=yellow ctermbg=black
+highlight Directory cterm=bold ctermfg=blue ctermbg=default
+highlight Executable cterm=bold ctermfg=green ctermbg=default
+highlight Fifo cterm=none ctermfg=yellow ctermbg=black
+highlight Link cterm=bold ctermfg=cyan ctermbg=default
+highlight Socket cterm=bold ctermfg=magenta ctermbg=default
+
+" file name specific highlight
+highlight /^.*\.(aac|au|flac|m4a|mid|midi|mka|mp3|mpc|oga|ogg|opus|ra|spx|wav|xspf)$/I cterm=none ctermfg=cyan ctermbg=default
+highlight /^.*(#|\.bak|\.crdownload|\.dpkg-dist|\.dpkg-new|\.dpkg-old|\.dpkg-tmp|\.old|\.orig|\.part|\.rej|\.rpmnew|\.rpmorig|\.rpmsave|\.swp|\.tmp|\.ucf-dist|\.ucf-new|\.ucf-old|~)$/I cterm=none ctermfg=default ctermbg=default
+highlight /^.*\.(7z|ace|alz|apk|arc|arj|bz|bz2|cab|cpio|crate|deb|drpm|dwm|dz|ear|egg|esd|gz|jar|lha|lrz|lz|lz4|lzh|lzma|lzo|pyz|rar|rpm|rz|sar|swm|t7z|tar|taz|tbz|tbz2|tgz|tlz|txz|tz|tzo|tzst|udeb|war|whl|wim|xz|z|zip|zoo|zst)$/I cterm=bold ctermfg=red ctermbg=default
+highlight /^.*\.(asf|avi|avif|bmp|cgm|dl|emf|flc|fli|flv|gif|gl|jpeg|jpg|jxl|m2v|m4v|mjpeg|mjpg|mkv|mng|mov|mp4|mp4v|mpeg|mpg|nuv|ogm|ogv|ogx|pbm|pcx|pgm|png|ppm|qt|rm|rmvb|svg|svgz|tga|tif|tiff|vob|webm|webp|wmv|xbm|xcf|xpm|xwd|yuv)$/I cterm=bold ctermfg=magenta ctermbg=default

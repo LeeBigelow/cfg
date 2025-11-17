@@ -1,0 +1,5 @@
+ufw allow CIFS
+ufw allow bootps  # dhcp, dnsmasq, for libvirt and qemu
+ufw allow DNS # for libvirt and qemu
+# make sure libvirt.conf is using iptables not nftables
+

@@ -1,0 +1,197 @@
+if v:progname =~? "evim"
+  finish
+endif
+" Get the defaults that most users want.
+source $VIMRUNTIME/defaults.vim
+packadd! matchit
+runtime ftplugin/man.vim
+
+" vim-plug setup
+call plug#begin()
+Plug 'jamespeapen/swayconfig.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-commentary'
+Plug 'jamessan/vim-gnupg'
+Plug 'vifm/vifm.vim'
+Plug 'tpope/vim-surround'
+Plug 'LunarWatcher/auto-pairs'
+"Plug 'tpope/vim-repeat'
+"Plug 'machakann/vim-highlightedyank'
+"Plug 'tpope/vim-fugitive'
+"Plug 'neoclide/coc.vim'
+"Plug 'airblade/vim-gitgutter'
+call plug#end()
+
+" Dark foot terminal
+set background=dark
+
+" arch sets up ~/.cache/vim backup and undo dirs
+set backup
+set undofile
+set viminfofile=~/.cache/vim/viminfo
+set confirm
+set autowrite
+set path+=~/.local/bin/,
+
+set mouse=a
+set hlsearch
+set belloff=all
+set title
+
+" set number
+" set relativenumber
+set linebreak
+set breakindent
+set showbreak=↪
+set scrolloff=3
+
+set laststatus=2
+set statusline=
+set statusline +=%n\        "buffer number
+set statusline +=%y%<%F     "file-type,full path
+set statusline +=%m%r%w%q   "modified,readonly,preview,quickfix
+set statusline +=%=         "fill space
+set statusline +=%5l        "current line
+set statusline +=/%L        "total lines
+set statusline +=%4v\       "virtual column number
+
+set ignorecase
+set smartcase
+set wildmenu
+set wildmode=lastused:full
+set wildoptions=pum,fuzzy
+set fillchars+=vert:┃
+set spelllang=en_ca
+set listchars=eol:$,tab:→·,trail:_,nbsp:␣ " set highlight colors after theme
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=-1 " will take on shiftwidth value
+set modeline
+
+let g:netrw_keepdir=0
+let g:mapleader="\\"
+let g:maplocalleader="\\"
+
+" load empyt and existing .sh files as bash
+augroup fileprep
+  autocmd!
+  autocmd BufNewFile,BufRead *.sh setlocal ft=bash
+  autocmd BufRead * loadview
+augroup END 
+
+" Set nice terminal cursors for differnt modes
+"  1 -> blinking block
+"  2 -> solid block
+"  3 -> blinking underscore
+"  4 -> solid underscore
+"  5 -> blinking vertical bar
+"  6 -> solid vertical bar
+
+if $XDG_SESSION_TYPE == 'tty'
+	" need to remove hardware cusor shape from cursor visible and
+	" and invisible sequences (inherited from cnorm?)
+	let &t_ve = "\e[?25h"
+	let &t_vi = "\e[?25l"
+	" now set hardware underline for insert and see-through block for normal
+	let &t_SI = "\e[?2;c"
+	let &t_SR = "\e[?3;c"
+	let &t_EI = "\e[?112;0;112;c"
+	" Turn off ModifyOtherKeys level 2
+	let &t_TI = ""
+	let &t_TE = ""
+else
+	let &t_EI = "\e[1 q" "EI (end insert mode, start normal mode)
+	let &t_SI = "\e[5 q" "SI (start insert mode)
+	let &t_SR = "\e[3 q" "SR (start replace mode)
+	" ? Turn on ModifyOtherKeys level 2
+	" messes up typing literal ctrl chars
+    let &t_TI = "\e[>4;2m"
+	let &t_TE = "\e[>4;m"
+endif
+
+" Map Y to act like D and yank to end of line, use yy to yank whole line
+map Y y$
+
+" set xdg-open as external viewer
+nmap gx :silent !xdg-open <cWORD> 1>/dev/null 2>&1 &<CR>
+
+" Clear highlighted search when redrawing
+noremap <C-L> :nohl<CR>:redraw!<CR>
+
+" Make i_C-W word deletion able to be undone
+" defaults.vim already does this for i_C-U
+inoremap <C-W> <C-G>u<C-W>
+
+" Map command w!! to write as root
+"cmap w!! w !sudo tee % > /dev/null
+cnoremap w!! execute 'w !sudo tee % > /dev/null' <bar> edit!
+
+" use C-S to update
+" make term flow control is off 'stty -ixon' in bashrc
+noremap <silent> <C-S> :update<CR>
+vnoremap <silent> <C-S> <C-C>:update<CR>
+inoremap <silent> <C-S> <C-O>:update<CR>
+
+" change current directory to current files dir
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+" paste from primary (selection) clipboard
+nmap <leader>p :r!wl-paste<CR>
+
+" Copies just visual selection to clipboard (not whole line)
+vmap <leader>y y :call system("wl-copy", @0)<CR>
+" <leader>Shift-Y copies whole lines only
+vmap <leader>Y :w !wl-copy<CR>
+" Normal mode copies last yank to clipboard
+nmap <leader>y :call system("wl-copy", @0)<CR>
+
+" Capitalize every word from current pos to end of line
+nmap <leader>C viW$:s/\%V\v<(.)(\w*)/\u\1\L\2/g<CR> \| `<
+
+" Edit and source config
+nmap <leader>e :e $MYVIMRC<CR>
+nmap <leader>s :source $MYVIMRC<CR>
+
+" Keypad keys
+nnoremap  <C-b>
+nnoremap  <C-f>
+nnoremap  gg
+nnoremap  G
+
+" Emacs keys for command line
+cnoremap <C-A> <Home>
+cnoremap <C-B> <Left>
+cnoremap <C-D> <Del>
+cnoremap <C-E> <End>
+cnoremap <C-F> <Right>
+cnoremap <C-N> <Down>
+cnoremap <C-P> <Up>
+" alt-b gives â, alt-f gives æ
+cnoremap â <S-Left>
+cnoremap æ <S-Right>
+" for when alt sends escape
+cnoremap b <S-Left>
+cnoremap f <S-Right>
+
+" from vim help
+" make '[[' and friends work when '{' not in first column
+" since it hardly ever is for me.
+map [[ ?{<CR>w99[{
+map ][ /}<CR>b99]}
+map ]] j0[[%/{<CR>
+map [] k$][%?}<CR>
+
+
+if $XDG_SESSION_TYPE == 'tty'
+	set t_Co=16
+	colorscheme default
+else
+	colorscheme iceberg
+	highlight Comment cterm=italic
+endif
+
+" make tab and tail chars more visible, set after setting theme
+"highlight SpecialKey ctermbg=Yellow ctermfg=Black

@@ -1,0 +1,6 @@
+[general]
+overlay = yes
+decoration= yes
+
+[viewer]
+window = #00000088 

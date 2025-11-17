@@ -1,0 +1,1 @@
+../../plugged/swayconfig.vim/syntax/swayconfig.vim
