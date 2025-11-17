@@ -1,0 +1,131 @@
+# tar won't exclude dir if it ends in just a / (eg dirname/)
+# rclone and rsnyc will exclude 
+# all will exclude contents of dir with /**
+# need begin **/ for borg
+**/Downloads/**
+**/Videos/**
+**/Music/**
+**/tmp/**
+**/Code/Other/**
+**/Wallpaper-Wikimedia/**
+
+# caches
+**/.cache*/**
+**/cache*/**
+**/Cache*/**
+
+# history files
+.zsh_history
+.bash_history
+**/bash/history*
+**/zsh/history*
+
+#Webbroswers
+**/.mozilla/**
+**/firefox*/**
+**/google-chrome*/**
+**/chromium*/**
+**/epiphany*/**
+
+**/local/state/**
+
+# tarot-reading-web
+**/tools/decks-b64-js/**
+**/tools/embedded/**
+
+**/calibre/plugins/**
+**/calibre/fonts/**
+**/calibre/viewer/**
+
+**/retroarch/autoconfig/**
+**/retroarch/cheats/**
+**/retroarch/cores/**
+**/retroarch/database/**
+**/retroarch/downloads/**
+**/retroarch/info/**
+**/retroarch/overlays/**
+**/retroarch/shaders/**
+
+**/vim/plugged/**
+
+**/blender/**
+**/Blender/**
+
+**/spotify-launcher/**
+**/spotify/**
+
+**/gnome-boxes/**
+**/libvirt/**
+
+**/fuse/**
+**/*_gocryptfs/**
+**/*_gcfs/**
+**/*_luks/**
+**/mounts/**
+**/.gvfs/**
+**/gvfs-metadata/**
+
+#lang packages
+**/.local/lib/python*/**
+**/go/**
+**/Perl5/**
+**/.cpanm/**
+**/.cmake/**
+**/.git/**
+**/.npm/**
+**/.cargo/**
+**/pipx/**
+**/.*venv/**
+
+## appimage files
+*.AppImage*
+
+## tmp files
+*.tmp
+*.old
+*.bak
+*.BAK
+*.orig
+
+# Session-specific:
+**/.dbus/**
+**/.Trash*/**
+**/Trash/**
+**/.*trash/**
+
+# Recently used files
+RecentDocument
+**/.recently-used*
+**/recently-used*
+
+# Thumbnails
+**/.thumbnails/**
+**/thumbnails/**
+**/.thumb/**
+**/Thumbs.db
+
+# Common Unix Printing System
+**/.cups/**
+
+# Session-specific
+**/.Xauthority
+**/.ICEauthority
+**/.gksu.lock
+**/.pulse/**
+**/.pulse-cookie
+**/.esd_auth
+
+
+#GnuPG:
+rnd
+random_seed
+.#*
+*.lock
+gpg-agent-info-*
+
+# versioning
+**/.svn/**
+**/.git/**
+**/.github/**
+**/.hg/**
+**/.bzr/**

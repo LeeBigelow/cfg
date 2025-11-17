@@ -1,0 +1,61 @@
+# Read `man 5 sway` for a complete reference.
+# vim: set sw=2 sts=2 syntax=swayconfig:
+
+include /etc/sway/config.d/*
+
+# seat seat0 xcursor_theme catppuccin-frappe-yellow-cursors 24
+
+# Outputs
+output eDP-1 {
+  mode 1920x1080@60Hz
+  position 0 0
+  scale 1
+  background "~/.wallpaper" fit
+}
+output HDMI-A-1 {
+  mode 1680x1050@59.883Hz
+  position 1920 0
+  scale 1
+  background "~/.wallpaper" fit
+}
+
+# check /usr/share/X11/xkb/rules/base.lst for options
+input "type:keyboard" {
+  xkb_layout us
+  xkb_options "compose:sclk,caps:escape_shifted_capslock"
+}
+
+input "type:touch" map_to_output eDP-1
+input "type:touch" events disabled 
+
+input "type:touchpad" {
+  dwt disabled
+  tap enabled
+  natural_scroll enabled
+}
+
+bindgesture {
+  swipe:right workspace next
+  swipe:left workspace prev
+}
+
+gaps inner 0
+gaps outer 0
+default_border pixel 2
+default_floating_border pixel 2
+
+focus_on_window_activation smart
+force_display_urgency_hint 100 ms
+
+font "Sans Serif 10"
+client.focused           #8f8f8f #303030 #ffffff #000000 #8f8f8f
+client.focused_tab_title #8f8f8f #303030 #ffffff #000000 #8f8f8f
+client.focused_inactive  #333333 #242424 #919191 #000000 #333333
+client.unfocused         #333333 #242424 #919191 #000000 #333333
+client.urgent            #f8e45c #f8e45c #000000 #000000 #f8e45c
+
+# Keys, Assignments, Autostart in separate files
+include ~/.config/sway/assignments.config
+include ~/.config/sway/keys.config
+include ~/.config/sway/autostart.config
+

@@ -1,0 +1,12 @@
+[options]
+disable-scaling=1
+slideshow-interval=1
+thumbnail-size=200x200
+command-2={ f=$1; n="$(zenity --title "Pqiv Rename" --entry --text="Rename: $f" --entry-text="$f" 2>/dev/null)" && mv "$f" "$n" && exec pqiv "$n"; }
+command-9=echo -n > $1
+
+[keybindings]
+
+d {command(:; f=$1; zenity --title "Pqiv Delete" --question --default-cancel --text="Delete: $f" 2>/dev/null && rm "$f";)}
+
+

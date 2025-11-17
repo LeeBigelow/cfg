@@ -1,0 +1,27 @@
+font="DejaVu Sans 10"
+border-size=2
+background-color=#303030
+border-color=#505050
+border-radius=0
+default-timeout=5000
+layer=overlay
+text-alignment=left
+# output="eDP-1"
+width=300
+height=300
+padding=10
+margin=5
+# icon-path=/usr/share/icons/oxygen/base
+# icon-path=/usr/share/icons/breeze
+icon-path=/usr/share/icons/AdwaitaLegacy
+
+
+[urgency="Low"]
+default-timeout=5000
+
+[urgency="Normal"]
+default-timeout=10000
+
+[urgency="Critical"]
+default-timeout=0
+border-color=#ea6962FF
