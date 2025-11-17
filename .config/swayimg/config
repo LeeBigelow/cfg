@@ -4,3 +4,7 @@ decoration= yes
 
 [viewer]
 window = #00000088 
+
+[keys.viewer]
+Shift+parenright = exec truncate -s 0 '%' && echo "File zeroed: %"; skip_file
+
