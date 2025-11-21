@@ -1,9 +1,8 @@
 /*Colors*/
-/* @define-color bg #353535; */
+@define-color fg     #ffffff;
 @define-color bg     #353535;
 @define-color dark   #282828;
 @define-color hi     #5d5d5d;
-@define-color fg     #ffffff;
 @define-color red_d  #402120;
 @define-color red    #ea6962;
 @define-color orange #e78a4e;
@@ -43,6 +42,7 @@ tooltip label {
 	color: @fg;
 	padding: 0 4px;
 }
+
 #custom-appmenu:hover,
 #workspaces button:hover,
 #workspaces button:hover label,
@@ -53,7 +53,7 @@ tooltip label {
 #network:hover,
 #battery:hover,
 #clock:hover,
-#custom-power:hover { 
+#custom-power:hover {
 	background: @hi;
 	color: @fg;
 }
@@ -65,7 +65,7 @@ tooltip label {
 
 #workspaces button {
 	opacity: 0.8;
-	padding: 0 6px;
+	padding: 0 8px;
 }
 #workspaces button.focused,
 #workspaces button.focused label {
@@ -74,10 +74,12 @@ tooltip label {
 	background: @fg;
 }
 #workspaces button.urgent {
-	background-color: @red;	color: @dark;
+	background-color: @red;	
+	color: @dark;
 }
 #workspaces button.visible.urgent{
-	background-color: @red;}
+	background-color: @red;
+}
 #workspaces button.urgent.focused {
 	background: @blue;
 }
@@ -114,11 +116,12 @@ tooltip label {
 	color: @bg;
 }
 #pulseaudio.bluetooth:hover {
-background-color: @hi;
+	background-color: @hi;
 	color: @fg;
 }
 #pulseaudio.source { 
-	background-color: @red;	color: @bg;
+	background-color: @red;
+	color: @bg;
 }
 #pulseaudio.source:hover { 
 	background-color: @orange;

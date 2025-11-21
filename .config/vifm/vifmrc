@@ -68,12 +68,27 @@ command! make !!make %a
 command! mkcd :mkdir! %a | cd %a
 command! vgrep !!vim "+grep %a"
 command! reload :write | restart full
-command! FZFfind : set noquickview
-	\| let $FZF_PICK = term('find 2>/dev/null | fzf')
+command! fzf :set noquickview
+	\| let $FZF_PICK = term('fd -H %a | fzf') 
 	\| if $FZF_PICK != ''
 	\|	 execute 'goto' fnameescape($FZF_PICK)
 	\| endif
-
+command! fzfd :set noquickview
+	\| let $FZF_PICK = term('fd -H -td %a | fzf')
+	\| if $FZF_PICK != ''
+	\|	 execute 'cd' fnameescape($FZF_PICK)
+	\| endif
+command! fzfl :set noquickview
+	\| let $FZF_PICK = term('locate %a | fzf')
+	\| if $FZF_PICK != ''
+	\|	 execute 'cd' fnameescape($FZF_PICK)
+	\| endif
+command! z :set noquickview
+	\| let $FZF_PICK = term('zoxide query -l %a | fzf')
+	\| if $FZF_PICK != ''
+	\|   execute '!zoxide add' fnameescape($FZF_PICK)
+	\|	 execute 'cd' fnameescape($FZF_PICK)
+	\| endif
 " ------------------------------------------------------------------------------
 " File types association
 " ------------------------------------------------------------------------------
@@ -220,11 +235,15 @@ filetype {*/,.*/}
 	\ {Rsync increment to dest dir} rsync-incremental.sh %c %D,
 	\ {Rsync to Dest} rsync-to-dir.sh %c %D,
 	\ {Rclone to Google Drive} rclone-sync-to-google.sh %c,
-	\ {Tar.zst to Dest}
+	\ {tar.zst to Dest}
 		\ outf=%c".tar.zst";
 		\ [ "${outf#.}" != "$outf" ] && outf="dot$outf";
 		\ tar --zstd -vcf %D/"$outf" %c,
-	\ {Tar to Dest}
+	\ {tar.gpg to Dest}
+		\ outf=%c".tar.gpg";
+		\ [ "${outf#.}" != "$outf" ] && outf="dot$outf";
+		\ tar -vc %c | gpg --encrypt --symmetric --output %D/"$outf",
+	\ {tar to Dest}
 		\ outf=%c".tar";
 		\ [ "${outf#.}" != "$outf" ] && outf="dot$outf";
 		\ tar -vcf %D/"$outf" %c,

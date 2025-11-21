@@ -19,7 +19,7 @@ if cfg checkout; then
 else
 	echo "Backing up pre-existing dot files to ~/.config-backup and retrying.";
 	mkdir -p $HOME/.config-backup
-	cfg checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} $HOME/.config-backup/{}
+	cfg checkout 2>&1 | grep -E "\s+\." | awk {'print $1'} | xargs -I{} mv {} $HOME/.config-backup/{}
 	cfg checkout
 fi
 cfg config status.showUntrackedFiles no

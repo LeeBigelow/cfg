@@ -24,7 +24,7 @@ logout_wm() {
 
 lock_wm() {
 	if pgrep swayidle; then
-		pkill -SIGUSR1 swayidle
+		sleep 0.1; pkill -SIGUSR1 swayidle
 	else
 		exec swaylock -f -c 000000 -i ~/.wallpaper
 	fi

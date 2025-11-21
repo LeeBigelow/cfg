@@ -40,4 +40,5 @@ bindkey -s "^[[27;5;13~" "^[\n"
 # (foot) ctrl+tab send tab (autocomplete)
 bindkey -s "^[[27;5;9~" "^I"
 
-bindkey -s "${key[Alt-Right]}" "${key[Right]}"
+# (foot) make alt-right clean
+[[ -n "${key[Alt-Right]}" ]] && bindkey -s "${key[Alt-Right]}" "${key[Right]}"

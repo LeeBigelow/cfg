@@ -96,6 +96,7 @@
 		"sway/window": {
 			"format": "{app_id}: {title}",
 			"icon": true,
+			"icon-size": 16,
 			"rewrite": {
 				": ": ""
 			},
