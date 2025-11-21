@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=BlueTUI
+StartupWMClass=bluetui
+GenericName=Bluetooth Network Connection Editor
+Comment=Bluetooth connection editor for bluez
+TryExec=bluetui
+Exec=foot -d none -a bluetui -T BlueTUI -- bluetui
+Terminal=false
+Type=Application
+Keywords=bluetooth;network;
+Icon=bluetui
+Categories=Utility;Network;System;
+StartupNotify=true
+

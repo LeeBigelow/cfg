@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Timer
+Comment=Sound an alarm after a given amount of time
+Icon=/home/yargo/.local/share/icons/hicolor/48x48/apps/alarm.png
+Exec=timer.sh
+Categories=Utility;
+Terminal=false
+StartupNotify=false
+PrefersNonDefaultGPU=false

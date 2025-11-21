@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=firefox --new-window "~/Code/Mine/Tarot-Reading-Web-Full/index.html"
+Terminal=false
+Icon=tarot
+StartupWMClass=tarot
+DBusActivatable=false
+Categories=Game;
+StartupNotify=true
+Name=Tarot (Firefox)
+Keywords=Card;Tarot;Game;
+

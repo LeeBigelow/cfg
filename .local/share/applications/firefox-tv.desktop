@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=firefox --name firefox-tv -P tv
+Terminal=false
+Icon=firefox-tv
+StartupWMClass=firefox-tv
+DBusActivatable=false
+Categories=AudioVideo;Video;Player;TV;Network;WebBrowser;
+StartupNotify=true
+Name=TV (Firefox)
+Keywords=Movie;TV;Video;Film;Internet;WWW;Browser;Web;Explorer;
+

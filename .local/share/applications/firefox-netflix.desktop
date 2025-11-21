@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=firefox --new-window "https://netflix.com/browse"
+Terminal=false
+Icon=netflix
+StartupWMClass=netflix
+DBusActivatable=false
+Categories=AudioVideo;Video;Player;TV;
+StartupNotify=true
+Name=Netflix (Firefox)
+Keywords=Movie;TV;Video;Film;
+

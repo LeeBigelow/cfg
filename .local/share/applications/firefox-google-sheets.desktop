@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=3irefox --new-window "https://docs.google.com/spreadsheets/u/0/"
+Terminal=false
+Icon=google-sheets
+Categories=Utility;Office;
+Name=Google Sheets (Firefox)
+Keywords=Accounting;Stats;Spreadsheet;Chart;
+

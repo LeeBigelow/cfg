@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=firefox --new-window "https://trakt.tv/calendars/my/shows-movies"
+Terminal=false
+Icon=trakt_tv
+StartupWMClass=trakt_tv
+DBusActivatable=false
+Categories=AudioVideo;Video;Player;TV;
+StartupNotify=true
+Name=Trakt.tv (Firefox)
+Keywords=Movie;TV;Video;Film;
+

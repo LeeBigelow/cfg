@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Wallpaper Delete Current
+Comment=Delete current wallpaper and set a new one
+Icon=edit-delete
+Exec=wallpaper.sh -d
+Categories=DesktopSettings;Settings;
+Terminal=false
+StartupNotify=false

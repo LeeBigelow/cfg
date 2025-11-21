@@ -1,0 +1,15 @@
+
+[Desktop Entry]
+Name=Impala
+StartupWMClass=impala
+GenericName=Wifi Network Connection Editor
+Comment=Wifi connection editor for iwd
+TryExec=impala
+Exec=foot -d none -a impala -T Impala -- impala
+Terminal=false
+Type=Application
+Keywords=wifi;network;
+Icon=impala
+Categories=Utility;Network;System;
+StartupNotify=true
+

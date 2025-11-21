@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=YD.sh
+Comment=Download with yt-dlp
+Exec=foot -d none -T "YD" -D "/home/yargo/Downloads" -a "yd" -- tmux new -A -s TV yd.sh
+Icon=yd
+Categories=Network

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=firefox --new-window "https://keep.google.com"
+Terminal=false
+Icon=google-keep
+Categories=Utility;Office;
+Name=Google Keep (Firefox)
+Keywords=Notes;Text;
+

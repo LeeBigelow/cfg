@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=firefox --new-window "https://open.spotify.com"
+Terminal=false
+Icon=spotify
+StartupWMClass=spotify
+DBusActivatable=false
+Categories=AudioVideo;Audio;Player;
+StartupNotify=true
+Name=Spotify (Firefox)
+Keywords=Music;
+

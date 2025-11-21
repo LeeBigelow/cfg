@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Todo
+Exec=foot -d none -a todo vim todo.md
+Icon=todo
+Categories=Network

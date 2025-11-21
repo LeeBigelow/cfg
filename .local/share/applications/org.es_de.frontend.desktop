@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=1.0
+# good for sway as a float
+# Exec=es-de --resolution 1920 1070
+Exec=es-de
+Icon=es-de
+Terminal=false
+Type=Application
+StartupNotify=true
+Hidden=false
+Categories=Game;Emulator;
+Name=ES-DE (Emulation Station Desktop Edition)
+GenericName=Gaming Frontend
+Comment=Emulation Station Desktop Edition
+Keywords=emulator;emulation;front-end;frontend;

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=firefox --new-window "https://calendar.google.com/calendar/u/0/r"
+Terminal=false
+Icon=google-calendar
+Categories=Utility;Office;
+Name=Google Calendar (Firefox)
+Keywords=Calendar;
+

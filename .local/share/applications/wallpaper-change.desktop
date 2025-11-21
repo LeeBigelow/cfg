@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Wallpaper Change
+Comment=Change wallpaper to random Google Art or Calibre Cover
+Icon=/usr/share/icons/AdwaitaLegacy/48x48/legacy/emblem-photos.png
+Exec=wallpaper.sh -c
+Categories=DesktopSettings;Settings;
+Terminal=false
+StartupNotify=false
+PrefersNonDefaultGPU=false
