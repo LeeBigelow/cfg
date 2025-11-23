@@ -5,6 +5,7 @@ alias lla="ls -lA"
 
 alias grep="grep --color=auto"
 
+alias cfg='/usr/bin/git --git-dir=$HOME/.cfg --work-tree=$HOME'
 alias findbroken="find ./ -type l ! -exec test -e {} \; -print"
 alias lc="fc -l -n -1 -1 | sed 's/^\s\+//' | tee /dev/stderr | wl-copy"
 alias hoff="set +o history"
