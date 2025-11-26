@@ -69,6 +69,7 @@
 				"class<calibre-ebook-viewer>": "",
 				"class<calibre-ebook-edit>": "󱇧",
 				"class<es-de>": "",
+				"class<.*RetroArch>": "󰯉",
 				"class<qalculate-gtk>": "",
 				"class<.*zathura>": "󰯃",
 				"class<.*Papers>": "󰯃",

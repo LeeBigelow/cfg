@@ -1,3 +1,4 @@
+# vim: ft=zsh 
 autoload -Uz run-help
 (( ${+aliases[run-help]} )) && unalias run-help
 alias help=run-help
@@ -5,7 +6,6 @@ autoload -Uz run-help-git run-help-ip run-help-sudo
 
 alias d="dirs -v"
 alias h="fc -l"
-
 alias cfg='/usr/bin/git --git-dir=$HOME/.cfg --work-tree=$HOME'
 alias findbroken="find ./ -type l ! -exec test -e {} \; -print"
 alias lc="fc -l -n -1 -1 | sed 's/^\s\+//' | tee /dev/stderr | wl-copy"
@@ -20,15 +20,13 @@ alias ffmpeg="ffmpeg -hide_banner"
 alias tmuxtv="cd $HOME/Downloads; tmux new-session -A -s TV"
 alias vi="vim"
 
-
 # some short helpful functions
 mpvb() { mpv --terminal=no "$@" >/dev/null 2>&1 & }
 mdv() { md2html --github "$1" | w3m -T text/html }
 vimhelp() { vim -c "help $1" -c on -c "au! VimEnter *" }
 
 # add listing directory to grml's chpwd
-
-chpwd () {
+chpwd() {
 	(( ZSH_SUBSHELL )) && return
 	[[ -z $DIRSTACKSIZE ]] && return
 	(( $DIRSTACKSIZE <= 0 )) && return
@@ -39,12 +37,18 @@ chpwd () {
 	ls
 }
 
-# yazi, cd on exit
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
+# broot as br, cd on exit
+br() {
+    local cmd cmd_file code
+    cmd_file=$(mktemp)
+    if broot --outcmd "$cmd_file" "$@"; then
+        cmd=$(<"$cmd_file")
+        command rm -f "$cmd_file"
+        eval "$cmd"
+    else
+        code=$?
+        command rm -f "$cmd_file"
+        return "$code"
+    fi
 }
 

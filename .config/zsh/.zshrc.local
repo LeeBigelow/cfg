@@ -14,14 +14,20 @@ setopt HASH_LIST_ALL NOTIFY
 
 # two line prompt
 zstyle ':prompt:grml:*:items:percent' pre $'\n'
+# Clean secondary prompt
+export PS2='%_> '
 
-export FZF_COMPLETION_DIR_OPTS='--walker dir,hidden,follow'
-export FZF_COMPLETION_PATH_OPTS='--walker file,dir,hidden,follow'
-eval "$(fzf --zsh)"
+if type fzf >/dev/null 2>&1; then
+	export FZF_COMPLETION_DIR_OPTS='--walker dir,hidden,follow'
+	export FZF_COMPLETION_PATH_OPTS='--walker file,dir,hidden,follow'
+	eval "$(fzf --zsh)"
+fi
 
-eval "$(zoxide init zsh)"
+if type zoxide >/dev/null 2>&1; then
+	eval "$(zoxide init zsh)"
+fi
 
-autoload -Uz zcalc
+# autoload -Uz zcalc
 
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"

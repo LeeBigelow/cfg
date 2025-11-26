@@ -1,34 +1,34 @@
-# vim: set syntax=swayconfig :
+# vim: syntax=swayconfig ts=2 sts=2 sw=2
 # keybindings for sway
 
 # Variables
 set {
-	$Alt Mod1
-	$Super Mod4
-	$term foot
-	$menu fuzzel
+	$Alt     Mod1
+	$Super   Mod4
+	$term    foot
+	$menu    fuzzel
 	$scriptd ~/.config/sway/scripts
 }
 
 # Sway Control
 bindsym {
 	$Super+Shift+c reload
-	$Super+q kill
-	$Alt+F4 kill
+	$Super+q       kill
+	$Alt+F4        kill
 	$Super+Shift+e exit
 }
 
 floating_modifier $Super normal
 
 mode "resize" bindsym {
-	Left resize grow width 20px
-	Right resize shrink width 20px
-	Up resize grow height 20px
-	Down resize shrink height 20px
-	h resize grow width 20px
-	l resize shrink width 20px
-	k resize grow height 20px
-	j resize shrink height 20px
+	Left  resize grow   width  20px
+	Right resize shrink width  20px
+	Up    resize grow   height 20px
+	Down  resize shrink height 20px
+	h     resize grow   width  20px
+	l     resize shrink width  20px
+	k     resize grow   height 20px
+	j     resize shrink height 20px
 	Return mode "default"
 	Escape mode "default"
 }
@@ -42,18 +42,18 @@ bindsym {
 	$Super+b splith
 	$Super+e layout toggle tabbed stacking splitv splith
 	$Super+f fullscreen
-	$Super+space floating toggle
+	$Super+space       floating toggle
 	$Super+Shift+space focus mode_toggle
-	$Super+Shift+b border toggle
-	$Super+Shift+s sticky toggle
+	$Super+Shift+b     border toggle
+	$Super+Shift+s     sticky toggle
 }
 
 # Focus
 bindsym {
-	$Super+a focus parent
-	$Super+Left focus left
-	$Super+Down focus down
-	$Super+Up focus up
+	$Super+a     focus parent
+	$Super+Left  focus left
+	$Super+Down  focus down
+	$Super+Up    focus up
 	$Super+Right focus right
 	$Super+Tab exec pkill fuzzel || $scriptd/window-select.sh
 
@@ -66,19 +66,19 @@ bindsym {
 # Move containers
 bindsym {
 	# refocus after move to pull cursor along (if mouse_warping container)
-	$Super+Shift+Left move left; focus
-	$Super+Shift+Down move down; focus
-	$Super+Shift+Up move up; focus
+	$Super+Shift+Left  move left;  focus
+	$Super+Shift+Down  move down;  focus
+	$Super+Shift+Up    move up;    focus
 	$Super+Shift+Right move right; focus
 
-	$Super+Shift+h move left; focus
-	$Super+Shift+j move down; focus
-	$Super+Shift+k move up; focus
+	$Super+Shift+h move left;  focus
+	$Super+Shift+j move down;  focus
+	$Super+Shift+k move up;    focus
 	$Super+Shift+l move right; focus
 
-	$Super+Shift+KP_Left move left; focus
-	$Super+Shift+KP_Down move down; focus
-	$Super+Shift+KP_Up move up; focus
+	$Super+Shift+KP_Left  move left;  focus
+	$Super+Shift+KP_Down  move down;  focus
+	$Super+Shift+KP_Up    move up;    focus
 	$Super+Shift+KP_Right move right; focus
 }
 
@@ -96,10 +96,10 @@ bindsym {
 	$Super+0 workspace number 10
 	$Super+Minus scratchpad show
 
-	$Super+n exec $scriptd/workspace-new.sh "open"
-	$Alt+Tab workspace back_and_forth 
+	$Super+n          exec $scriptd/workspace-new.sh "open"
+	$Alt+Tab          workspace back_and_forth 
 	Ctrl+$Super+Right workspace next
-	Ctrl+$Super+Left workspace prev
+	Ctrl+$Super+Left  workspace prev
 }
 
 # Workspace moving
@@ -117,22 +117,25 @@ bindsym {
 	$Super+Shift+Minus move scratchpad
 
 	$Super+Shift+n exec $scriptd/workspace-new.sh "move"
-	$Super+Ctrl+n exec $scriptd/workspace-new.sh "send"
-	$Super+Shift+Ctrl+Right move container to workspace next_on_output, \
-		workspace next_on_output
-	$Super+Shift+Ctrl+Left move container to workspace prev_on_output, \
-		workspace prev_on_output
+	$Super+Ctrl+n  exec $scriptd/workspace-new.sh "send"
+	$Super+Shift+Ctrl+Right move container to workspace next_on_output, workspace next_on_output
+	$Super+Shift+Ctrl+Left  move container to workspace prev_on_output, workspace prev_on_output
 
 	$Super+m mark --toggle main 
 	$Super+s swap container with mark main 
 	$Super+Shift+m floating disable, move to output right, focus output right 
 }
 
+# Keypad resize width and height to 1/3 or 1/2 
 bindsym {
 	$Super+KP_Right resize set width 33 ppt
-	$Super+KP_Left  resize set width 67 ppt
-	$Super+KP_Down  resize set height 67 ppt
+	$Super+KP_Left  resize set width 50 ppt
+	$Super+KP_Down  resize set height 50 ppt
 	$Super+KP_Up    resize set height 33 ppt
+}
+
+# Move to corner, resize medium (1/2)
+bindsym {
 	$Super+KP_Home  exec $scriptd/corner.sh -m tl
 	$Super+KP_Prior exec $scriptd/corner.sh -m tr
 	$Super+KP_Begin exec $scriptd/corner.sh -m c
@@ -140,70 +143,62 @@ bindsym {
 	$Super+KP_Next  exec $scriptd/corner.sh -m br
 }
 
+# Move to corner, resize small (1/3)
 bindsym {
-	$Super+$Alt+KP_Home [con_id="__focused__"] \
-		exec $scriptd/corner.sh -s tl
-	$Super+$Alt+KP_Prior [con_id="__focused__"] \
-		exec $scriptd/corner.sh -s tr
-	$Super+$Alt+KP_Begin [con_id="__focused__"] \
-		exec $scriptd/corner.sh -s c
-	$Super+$Alt+KP_End [con_id="__focused__"] \
-		exec $scriptd/corner.sh -s bl
-	$Super+$Alt+KP_Next [con_id="__focused__"] \
-		exec $scriptd/corner.sh -s br
+	$Super+$Alt+KP_Home  exec $scriptd/corner.sh -s tl
+	$Super+$Alt+KP_Prior exec $scriptd/corner.sh -s tr
+	$Super+$Alt+KP_Begin exec $scriptd/corner.sh -s c
+	$Super+$Alt+KP_End   exec $scriptd/corner.sh -s bl
+	$Super+$Alt+KP_Next  exec $scriptd/corner.sh -s br
 }
 
+# Move to corner, no resize
 bindsym {
-	$Super+Shift+KP_Home [con_id="__focused__"] \
-		exec $scriptd/corner.sh tl
-	$Super+Shift+KP_Prior [con_id="__focused__"] \
-		exec $scriptd/corner.sh tr
-	$Super+Shift+KP_Begin [con_id="__focused__"] \
-		exec $scriptd/corner.sh c
-	$Super+Shift+KP_End [con_id="__focused__"] \
-		exec $scriptd/corner.sh bl
-	$Super+Shift+KP_Next [con_id="__focused__"] \
-		exec $scriptd/corner.sh br
+	$Super+Shift+KP_Home  exec $scriptd/corner.sh tl
+	$Super+Shift+KP_Prior exec $scriptd/corner.sh tr
+	$Super+Shift+KP_Begin exec $scriptd/corner.sh c
+	$Super+Shift+KP_End   exec $scriptd/corner.sh bl
+	$Super+Shift+KP_Next  exec $scriptd/corner.sh br
 }
 
 # Media Keys
 bindsym {
 	--locked XF86AudioRaiseVolume exec volume.sh up
 	--locked XF86AudioLowerVolume exec volume.sh down
-	--no-repeat XF86AudioMute exec volume.sh mute
-	--no-repeat XF86AudioMicMute exec volume.sh mic-mute
+	--no-repeat XF86AudioMute     exec volume.sh mute
+	--no-repeat XF86AudioMicMute  exec volume.sh mic-mute
 
-	--locked XF86AudioNext exec playerctl position 5+
-	--locked XF86AudioPrev exec playerctl position 5-
+	--locked XF86AudioNext       exec playerctl position 5+
+	--locked XF86AudioPrev       exec playerctl position 5-
 	--locked Shift+XF86AudioNext exec playerctl next
 	--locked Shift+XF86AudioPrev exec playerctl previous
-	--locked XF86AudioPlay exec playerctl play-pause
-	--locked XF86AudioStop exec playerctl stop
+	--locked XF86AudioPlay       exec playerctl play-pause
+	--locked XF86AudioStop       exec playerctl stop
 }
 
 # Monitor Control
 bindsym {
-	--locked XF86MonBrightnessUp exec brightnessctl -d 'amdgpu_bl1' -q set '+10%'
+	--locked XF86MonBrightnessUp   exec brightnessctl -d 'amdgpu_bl1' -q set '+10%'
 	--locked XF86MonBrightnessDown exec brightnessctl -d 'amdgpu_bl1' -q set '10%-'
-	--no-repeat XF86Favorites exec killall -SIGUSR1 wlsunset
-	--locked --no-repeat $Super+o output 'eDP-1' toggle
+	--no-repeat XF86Favorites      exec killall -SIGUSR1 wlsunset
+	--locked --no-repeat $Super+o       output 'eDP-1' toggle
 	--locked --no-repeat $Super+Shift+o output 'HDMI-A-1' toggle
 }
 
 # Print Screen
 bindsym {
-	Print exec $scriptd/screenshot.sh selected
+	Print         exec $scriptd/screenshot.sh selected
 	Control+Print exec $scriptd/screenshot.sh focused
-	$Super+Print exec $scriptd/screenshot.sh all
+	$Super+Print  exec $scriptd/screenshot.sh all
 }
 
 # App Launching
 bindsym {
-	XF86PowerOff exec pkill fuzzel || power-menu.sh
-	$Super+Return exec $term -d none
+	XF86PowerOff        exec pkill fuzzel || power-menu.sh
+	$Super+Return       exec $term -d none
 	$Super+Shift+Return exec $term -a $term.float
-	$Super+d exec pkill fuzzel || $menu
-	$Super+p exec secrets
-	XF86Calculator exec qalculate-gtk
+	$Super+d            exec pkill fuzzel || $menu
+	$Super+p            exec secrets
+	XF86Calculator      exec qalculate-gtk
 }
 

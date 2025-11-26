@@ -319,3 +319,6 @@ nnoremap <esc>[1;5D :unselect<cr>j
 "Alt-Left
 cnoremap <esc>[1;3C <a-f> 
 nnoremap <esc>[1;3C :select<cr>j 
+
+"nerdfont icons
+"source ~/.config/vifm/favicons.vifm

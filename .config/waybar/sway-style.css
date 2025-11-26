@@ -73,14 +73,17 @@ tooltip label {
 	color: @bg;
 	background: @fg;
 }
-#workspaces button.urgent {
+#workspaces button.urgent,
+#workspaces button.urgent label {
 	background-color: @red;	
 	color: @dark;
 }
-#workspaces button.visible.urgent{
+#workspaces button.visible.urgent,
+#workspaces button.visible.urgent label {
 	background-color: @red;
 }
-#workspaces button.urgent.focused {
+#workspaces button.urgent.focused, 
+#workspaces button.urgent.focused label {
 	background: @blue;
 }
 

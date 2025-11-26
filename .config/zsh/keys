@@ -1,3 +1,4 @@
+# vim: ft=zsh
 # grml alreay set up key array, just adding to it
 key[Alt-Up]="${terminfo[kUP3]}"
 key[Alt-Left]="${terminfo[kLFT3]}"

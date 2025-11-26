@@ -2,8 +2,7 @@
 # vim: set sw=2 sts=2 syntax=swayconfig:
 
 include /etc/sway/config.d/*
-
-# seat seat0 xcursor_theme catppuccin-frappe-yellow-cursors 24
+include ~/.config/sway/config.d/*
 
 # Outputs
 output eDP-1 {
@@ -21,6 +20,7 @@ output HDMI-A-1 {
 
 # check /usr/share/X11/xkb/rules/base.lst for options
 input "type:keyboard" {
+  repeat_delay 1000
   xkb_layout us
   xkb_options "compose:sclk,caps:escape_shifted_capslock"
 }
@@ -29,7 +29,7 @@ input "type:touch" map_to_output eDP-1
 input "type:touch" events disabled 
 
 input "type:touchpad" {
-  dwt disabled
+  dwt enabled
   tap enabled
   natural_scroll enabled
 }
@@ -54,8 +54,4 @@ client.focused_inactive  #333333 #242424 #919191 #000000 #333333
 client.unfocused         #333333 #242424 #919191 #000000 #333333
 client.urgent            #f8e45c #f8e45c #000000 #000000 #f8e45c
 
-# Keys, Assignments, Autostart in separate files
-include ~/.config/sway/assignments.config
-include ~/.config/sway/keys.config
-include ~/.config/sway/autostart.config
 

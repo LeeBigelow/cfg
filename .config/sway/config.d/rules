@@ -4,6 +4,8 @@
 # Window assignments 
 for_window [app_id="vlc"] floating enable
 for_window [class="vlc"] floating enable
+for_window [class="es-de"] floating disable
+for_window [app_id=".*RetroArch"] floating enable
 for_window [app_id="dialog-password"] floating enable
 for_window [app_id="todo"] floating enable
 for_window [app_id="calibre-ebook-edit"] floating enable
